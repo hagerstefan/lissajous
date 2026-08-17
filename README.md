@@ -1,5 +1,15 @@
-Circles
-https://html-preview.github.io/?url=https://github.com/hastefan/Lissajous/blob/main/index.html
+# Lissajous
 
-Triangles
-https://html-preview.github.io/?url=https://github.com/hastefan/Lissajous/blob/main/Lissajous_Triangle/index.html
+Interactive canvas animations that draw Lissajous figures the way you'd construct them by hand.
+
+Two variants: circles (true Lissajous curves) and triangles.
+
+**[Circles](#)**
+
+![Lissajous circles](gifs/lissajous_circle.gif)
+
+**[Triangles](#)**
+
+![Lissajous triangles](gifs/lissajous_triangle.gif)
+
+Vanilla JavaScript and the Canvas 2D API, no dependencies. Open `circle/index.html` or `triangle/index.html` to run locally.
