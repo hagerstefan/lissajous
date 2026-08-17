@@ -64,6 +64,9 @@ function initValues() {
         images[i] = [];
     }
 
+    strokeX = []; 
+    strokeY = [];
+
     initializeLissajousArray();
 }
 
@@ -78,15 +81,16 @@ function initializeLissajousArray() {
 function draw(timeStamp) {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     drawTable();
-    drawLissajousImages();
     if (angle >= 2 * Math.PI) {
         if (looping) {
             angle = 0;
             initializeLissajousArray();
         }
     } else {
+        addVectors();
         angle += 0.01;
     }
+    drawLissajousImages();
     requestAnimationFrame(draw);
 }
 
@@ -130,7 +134,9 @@ function drawTable() {
         ctx.stroke();
         strokeX[j] = cx + x;
     }
+}
 
+function addVectors() {
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             images[i][j].addVector(strokeX[j], strokeY[i]);
