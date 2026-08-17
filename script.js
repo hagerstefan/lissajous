@@ -19,13 +19,7 @@ let ctx = canvas.getContext('2d');
 let rowSlider = document.getElementById('rowSlider');
 let colSlider = document.getElementById('colSlider');
 let diameterSlider = document.getElementById('diameterSlider');
-
-
-/*
-// fit canvas to screen
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-*/
+let loopCheckbox = document.getElementById('loopCheckbox');
 
 ctx.lineWidth = 1;
 ctx.fillStyle = "white";
@@ -40,6 +34,8 @@ let r = d / 2;
 let gap = d * 0.2;
 let angle = 0;
 
+let looping = true;
+
 let images = [];
 
 let strokeY = [];
@@ -52,6 +48,7 @@ function initValues() {
     d = parseInt(diameterSlider.value);
     rows = parseInt(rowSlider.value);
     cols = parseInt(colSlider.value);
+    looping = loopCheckbox.checked;
 
     r = d / 2;
     gap = d * 0.2;
@@ -82,11 +79,13 @@ function draw(timeStamp) {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     drawTable();
     drawLissajousImages();
-    angle += 0.01;
     if (angle >= 2 * Math.PI) {
-        angle = 0;
-        initializeLissajousArray();
-        //return;
+        if (looping) {
+            angle = 0;
+            initializeLissajousArray();
+        }
+    } else {
+        angle += 0.01;
     }
     requestAnimationFrame(draw);
 }
@@ -159,3 +158,4 @@ function drawLissajousImages() {
 colSlider.addEventListener("change", initValues);
 rowSlider.addEventListener("change", initValues);
 diameterSlider.addEventListener("change", initValues);
+loopCheckbox.addEventListener("change", initValues);

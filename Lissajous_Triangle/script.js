@@ -19,13 +19,7 @@ let ctx = canvas.getContext('2d');
 let rowSlider = document.getElementById('rowSlider');
 let colSlider = document.getElementById('colSlider');
 let sideLengthSlider = document.getElementById('sideLengthSlider');
-
-
-/*
-// fit canvas to screen
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-*/
+let loopCheckbox = document.getElementById('loopCheckbox');
 
 ctx.lineWidth = 1;
 ctx.fillStyle = "white";
@@ -40,6 +34,8 @@ let rows = 6;
 let cols = 6;
 let progress = 0;
 
+let looping = true;
+
 let images = [];
 
 let strokeY = [];
@@ -52,6 +48,7 @@ function initValues() {
     a = parseInt(sideLengthSlider.value);
     rows = parseInt(rowSlider.value);
     cols = parseInt(colSlider.value);
+    looping = loopCheckbox.checked;
 
     h = Math.sqrt(Math.pow(a, 2) - Math.pow(a / 2, 2));
     gap = a * 0.2;
@@ -82,11 +79,13 @@ function draw(timeStamp) {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     drawTable();
     drawLissajousImages();
-    progress += 0.005;
     if (progress >= 3) {
-        progress = 0;
-        initializeLissajousArray();
-        //return;
+        if (looping) {
+            progress = 0;
+            initializeLissajousArray();
+        }
+    } else {
+        progress += 0.005;
     }
     requestAnimationFrame(draw);
 }
@@ -188,3 +187,4 @@ function drawLissajousImages() {
 rowSlider.addEventListener("change",initValues);
 colSlider.addEventListener("change", initValues);
 sideLengthSlider.addEventListener("change", initValues);
+loopCheckbox.addEventListener("change", initValues);
