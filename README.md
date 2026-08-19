@@ -4,11 +4,11 @@ Interactive canvas animations that draw Lissajous figures the way you'd construc
 
 Two variants: circles (true Lissajous curves) and triangles.
 
-**[Circles](#)**
+**[Circles](https://hagerstefan.github.io/lissajous/circle/)**
 
 ![Lissajous circles](gifs/lissajous_circle.gif)
 
-**[Triangles](#)**
+**[Triangles](https://hagerstefan.github.io/lissajous/triangle/)**
 
 ![Lissajous triangles](gifs/lissajous_triangle.gif)
 
